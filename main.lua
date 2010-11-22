@@ -24,6 +24,18 @@ function love.update(dt)
     elseif direction < LEFT then
         direction = RIGHT
     end
+
+    -- change direction
+    if direction == LEFT then
+        starty = starty-1
+    elseif direction == RIGHT then
+        startx = startx-1
+    elseif direction == DOWN then
+        starty = starty+1
+    elseif direction == UP then
+        startx = startx+1
+    end
+
 end
 function love.draw()
     increment = increment+1
