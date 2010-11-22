@@ -6,6 +6,8 @@ local EMPTY, BLACK, WHITE = -1, 0, 255
 math.randomseed(os.time())
 local direction, startx, starty = math.random(4), math.random(COLUMNS), math.random(ROWS)
 function love.load()
+    love.graphics.setCaption("Langton's Ant")
+	love.graphics.setMode(COLUMNS*2, ROWS*2, false, false, 0)
 end
 function love.update(dt)
 end
