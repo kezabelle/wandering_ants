@@ -17,6 +17,7 @@ function love.load()
     end)
 end
 function love.update(dt)
+    rendered = nil
     -- if the direction is over the max value (4/RIGHT), reset it to 1/LEFT
     -- alternatively, if its under the min (1/LEFT), set it to 4/RIGHT
     if direction > RIGHT then
@@ -36,8 +37,12 @@ function love.update(dt)
         startx = startx+1
     end
 
+    rendered = love.graphics.newImage(canvas)
+    rendered:setFilter('linear', 'linear')
 end
 function love.draw()
     increment = increment+1
+    love.graphics.scale(2, 2)
     love.graphics.print('Iteration: '..increment, 20, 20)
+    love.graphics.draw(rendered, 0, 0)
 end
