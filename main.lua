@@ -17,6 +17,13 @@ function love.load()
 	love.graphics.setMode(COLUMNS*2, ROWS*2, false, false, 0)
 end
 function love.update(dt)
+    -- if the direction is over the max value (4/RIGHT), reset it to 1/LEFT
+    -- alternatively, if its under the min (1/LEFT), set it to 4/RIGHT
+    if direction > RIGHT then
+        direction = LEFT
+    elseif direction < LEFT then
+        direction = RIGHT
+    end
 end
 function love.draw()
     increment = increment+1
