@@ -9,6 +9,10 @@ function love.load()
     love.graphics.setCaption("Langton's Ant")
 	love.graphics.setMode(COLUMNS*2, ROWS*2, false, false, 0)
 	canvas = love.image.newImageData(COLUMNS, ROWS)
+	-- paint everything in the canvas black
+	canvas:mapPixel(function ()
+	    return 0, 0, 0, 100
+    end)
 end
 function love.update(dt)
     -- if the direction is over the max value (4/RIGHT), reset it to 1/LEFT
