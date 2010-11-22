@@ -18,6 +18,7 @@ function love.load()
 end
 function love.update(dt)
     rendered = nil
+    local r,_,_,_ = canvas:getPixel(startx, starty)
     -- if the direction is over the max value (4/RIGHT), reset it to 1/LEFT
     -- alternatively, if its under the min (1/LEFT), set it to 4/RIGHT
     if direction > RIGHT then
