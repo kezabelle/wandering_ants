@@ -39,4 +39,5 @@ function love.update(dt)
 end
 function love.draw()
     increment = increment+1
+    love.graphics.print('Iteration: '..increment, 20, 20)
 end
