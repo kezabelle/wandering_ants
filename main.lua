@@ -1,5 +1,6 @@
-local COLUMNS = 300
-local ROWS = 300
+local COLUMNS = 50
+local ROWS = 50
+local SCALE = 10
 local LEFT, UP, DOWN, RIGHT = 1, 2, 3, 4
 local EMPTY, BLACK, WHITE = -1, 0, 255
 -- cover non-randomness on Win32/OSX
@@ -9,7 +10,7 @@ local canvas, rendered
 
 function love.load()
     love.graphics.setCaption("Langton's Ant")
-	love.graphics.setMode(COLUMNS*2, ROWS*2, false, false, 0)
+	love.graphics.setMode(COLUMNS*SCALE, ROWS*SCALE, false, true, 0)
 	canvas = love.image.newImageData(COLUMNS, ROWS)
 	-- paint everything in the canvas black
 	canvas:mapPixel(function ()
@@ -67,7 +68,7 @@ end
 
 function love.draw()
     increment = increment+1
-    love.graphics.scale(2, 2)
-    love.graphics.print('Iteration: '..increment, 20, 20)
+    love.graphics.scale(SCALE, SCALE)
+    -- love.graphics.print('Iteration: '..increment, 20, 20)
     love.graphics.draw(rendered, 0, 0)
 end
