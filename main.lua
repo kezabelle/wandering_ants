@@ -16,6 +16,7 @@ function love.load()
 	    return 0, 0, 0, 100
     end)
 end
+
 function love.update(dt)
     rendered = nil
     local r,_,_,_ = canvas:getPixel(startx, starty)
@@ -24,6 +25,9 @@ function love.update(dt)
     if r == BLACK then
         canvas:setPixel(startx, starty, WHITE, WHITE, WHITE, 255)
         direction = direction+1
+    else
+        canvas:setPixel(startx, starty, BLACK, BLACK, BLACK, 255)
+        direction = direction-1
     end
 
     -- if the direction is over the max value (4/RIGHT), reset it to 1/LEFT
