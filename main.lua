@@ -49,9 +49,22 @@ function love.update(dt)
         startx = startx+1
     end
 
+    -- handle edges of the world
+    if startx > COLUMNS or startx < 0 then
+        math.randomseed(os.time())
+        startx =  math.random(COLUMNS)
+        direction = math.random(4)
+    end
+    if starty > ROWS or starty < 0 then
+        math.randomseed(os.time())
+        starty = math.random(ROWS)
+        direction = math.random(4)
+    end
+
     rendered = love.graphics.newImage(canvas)
     rendered:setFilter('linear', 'linear')
 end
+
 function love.draw()
     increment = increment+1
     love.graphics.scale(2, 2)
