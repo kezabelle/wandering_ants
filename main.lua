@@ -20,14 +20,14 @@ end
 
 function love.update(dt)
     rendered = nil
-    local r,_,_,_ = canvas:getPixel(startx, starty)
-
-    -- if black (0), flip to white, otherwise flip to black
-    if r == BLACK then
-        canvas:setPixel(startx, starty, WHITE, WHITE, WHITE, 255)
+    local r,g,b,_ = canvas:getPixel(startx, starty)
+    local rgb = r+g+b
+    local newrgb = math.random(1, 254)
+    canvas:setPixel(startx, starty, newrgb, newrgb, newrgb, 255)
+    -- 600> is 'white', 165< is 'black', change direction!
+    if rgb >= 600 then
         direction = direction+1
-    else
-        canvas:setPixel(startx, starty, BLACK, BLACK, BLACK, 255)
+    elseif rgb <= 165 then
         direction = direction-1
     end
 
@@ -52,14 +52,12 @@ function love.update(dt)
 
     -- handle edges of the world
     if startx > COLUMNS or startx < 0 then
-        math.randomseed(os.time())
         startx =  math.random(COLUMNS)
-        direction = math.random(4)
+        direction = math.random(RIGHT)
     end
     if starty > ROWS or starty < 0 then
-        math.randomseed(os.time())
         starty = math.random(ROWS)
-        direction = math.random(4)
+        direction = math.random(RIGHT)
     end
 
     rendered = love.graphics.newImage(canvas)
@@ -69,6 +67,9 @@ end
 function love.draw()
     increment = increment+1
     love.graphics.scale(SCALE, SCALE)
+    love.graphics.setColor(WHITE, WHITE, WHITE, 255)
     -- love.graphics.print('Iteration: '..increment, 20, 20)
     love.graphics.draw(rendered, 0, 0)
+    love.graphics.setColor(WHITE, 0, 0, 255)
+    love.graphics.rectangle('fill', startx, starty, 1, 1)
 end
