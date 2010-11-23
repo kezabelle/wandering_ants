@@ -59,9 +59,8 @@ function love.update(dt)
         starty = math.random(ROWS)
         direction = math.random(RIGHT)
     end
-
     rendered = love.graphics.newImage(canvas)
-    rendered:setFilter('linear', 'linear')
+    rendered:setFilter('nearest', 'nearest')
 end
 
 function love.draw()
