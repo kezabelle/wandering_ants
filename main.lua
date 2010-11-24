@@ -28,7 +28,7 @@ function create_ants(count)
     ants = {}
     for i=1, count do
         -- cover non-randomness on Win32/OSX
-        math.randomseed(i+count)
+        math.randomseed(os.time()+math.random(1, 1000))
         ants[i] = {
             direction = math.random(RIGHT),
             x_position = math.random(COLUMNS),
