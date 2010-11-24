@@ -11,6 +11,7 @@ local canvas, rendered
 function love.load()
     love.graphics.setCaption("Langton's Ant")
 	love.graphics.setMode(COLUMNS*SCALE, ROWS*SCALE, false, true, 0)
+	love.mouse.setVisible(false)
 	canvas = love.image.newImageData(COLUMNS, ROWS)
 	-- paint everything in the canvas black
 	canvas:mapPixel(function ()
